@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
 
-  <title></title>
+  <title>eCalculator</title>
 
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/main.min.css">
@@ -14,25 +14,26 @@
 <body class="page__body page__body--nojs" id="siteBody">
   <script src="./js/nojs.min.js"></script>
 
-  <!-- HEADER part of page started -->
-
-  <header></header>
-
-  <!-- HEADER part of page ended -->
-
-
   <!-- MAIN part of page started -->
 
-  <main class="page__main"></main>
+  <main class="page__main">
+    <form id="calculatorForm" action="https://echo.htmlacademy.ru" method="GET" spellcheck="false">
+      <input id="" type="number" name="firstOperand" id="firstOperand">
+      <select name="operatorSelector" id="operatorSelector">
+        <option value="division"> / </option>
+        <option value="product"> * </option>
+        <option value="difference"> - </option>
+        <option value="addition"> + </option>
+        <option value="module"> % </option>
+        <option value="power"> ** </option>
+      </select>
+      <input type="number" name="secondOperand" id="secondOperand">
+      <button type="submit" value="submit" name="submit"> = </button>
+    </form>
+    <span class="border p-2 m-2">adfa</span>
+  </main>
 
   <!-- MAIN part of page ended -->
-
-
-  <!-- FOOTER part of page started -->
-
-  <footer></footer>
-
-  <!-- FOOTER part of page ended -->
 
   <div class="disabled-script-info container my-5 rounded py-3 px-2 bg-danger text-white text-center">
     Javascript application feature is disabled in your browser, please <a class="text-white font-weight-bold disabled-script-info__js-on-manual" href="https://www.enable-javascript.com/" target="_blank">enable javascript</a> to use the site

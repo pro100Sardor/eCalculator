@@ -1,0 +1,16 @@
+{
+    "version": 3,
+    "mappings": "AIAA,AAAA,CAAC,CACD,CAAC,AAAA,QAAQ,CACT,CAAC,AAAA,OAAO,AAAC,CACP,UAAU,CAAE,OAAO,CACpB,AAED,AAAA,IAAI,AAAC,CACH,MAAM,CAAE,CAAC,CACT,UAAU,CAAE,UAAU,CACtB,eAAe,CAAE,MAAM,CACvB,MAAM,CAAE,IAAI,CACb,AAED,AAAA,IAAI,AAAC,CACH,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,MAAM,CAAE,IAAI,CAEb,AElBD,AAAA,WAAW,AAAC,CACV,SAAS,CAAE,CAAC,CACb,AAED,AAAA,iBAAiB,CAAC,WAAW,AAAC,CAC5B,OAAO,CAAE,IAAI,CACd,ACND,AAAA,qBAAqB,AAAC,CACpB,OAAO,CAAE,IAAI,CACd,AAED,AAAA,iBAAiB,CAAC,qBAAqB,AAAC,CACtC,OAAO,CAAE,KAAK,CACf",
+    "sources": [
+        "../scss/main.scss",
+        "../scss/_variables.scss",
+        "../scss/_mixins.scss",
+        "../scss/_fonts.scss",
+        "../scss/_general.scss",
+        "../scss/blocks/_blocks-all.scss",
+        "../scss/blocks/_page.scss",
+        "../scss/blocks/_disabled-script-info.scss"
+    ],
+    "names": [],
+    "file": "main.min.css"
+}

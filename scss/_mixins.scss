@@ -1,0 +1,73 @@
+// media screens mixins started
+
+@mixin breakpoint-down ($screen-width) {
+  @media only screen and (max-width: $screen-width) {
+    @content;
+  }
+}
+
+@mixin breakpoint-up ($screen-width) {
+  @media only screen and (min-width: $screen-width) {
+    @content;
+  }
+}
+
+@mixin breakpoint-between ($min-screen, $max-screen) {
+  @media only screen and (min-width: $min-screen) and (max-width: $max-screen) {
+    @content;
+  }
+}
+
+// media screens mixins ended
+
+// list by default padding and margin loss styles started
+
+@mixin reset-list {
+  list-style-type: none;
+  margin: {
+    top: 0;
+    bottom: 0;
+  }
+  padding-left: 0;
+}
+
+// list by default padding and margin loss styles ended
+
+// nailing to correct the top and bottom margins of the headings started
+
+@mixin h-m-control ($top: 0, $bottom: 0) {
+  margin: {
+    top: $top;
+    bottom: $bottom;
+  }
+}
+
+// nailing to correct the top and bottom margins of the headings ended
+
+// nailing to correct the top and bottom margins of the headings started
+
+@mixin p-m-control ($top: 0, $bottom: 0) {
+margin: {
+  top: $top;
+  bottom: $bottom;
+}
+}
+
+// nailing to correct the top and bottom margins of the headings ended
+
+
+// media to adapt the background image to retinal screens started
+
+@mixin bg-retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (     -o-min-device-pixel-ratio: 2/1),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+      @content;
+  }
+}
+
+// media to adapt the background image to retinal screens ended

@@ -1,0 +1,7 @@
+.disabled-script-info {
+  display: none;
+}
+
+.page__body--nojs .disabled-script-info {
+  display: block;
+}

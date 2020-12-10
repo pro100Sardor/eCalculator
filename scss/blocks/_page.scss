@@ -1,0 +1,7 @@
+.page__main {
+  flex-grow: 1;
+}
+
+.page__body--nojs .page__main {
+  display: none;
+}

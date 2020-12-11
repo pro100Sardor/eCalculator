@@ -34,27 +34,44 @@ let elFirstOperandInput = elCalculatorForm.querySelector('#firstOperandInput');
 let elSecondOperandInput = elCalculatorForm.querySelector('#secondOperandInput');
 let elOperatorSelector = elCalculatorForm.querySelector('#operatorSelector');
 
+let elErrorBox = document.querySelector('#errorBox');
+
 let elCalculationResult = elSiteMain.querySelector('#calculationResult');
 
-let elErrorMessage = document.createElement('p');
-elErrorMessage.classList.add('alert', 'alert-danger', 'my-3');
+function generatingError(errorType) {
+  let elErrorMessage = document.createElement('p');
+  elErrorMessage.classList.add('alert', 'alert-danger', 'my-3');
+
+  switch(errorType) {
+    case 'operandsAreNotIncluded':
+      elErrorMessage.textContent = "enter a number in the fields to perform the calculation";
+      break;
+
+    case 'divideByZero':
+      elErrorMessage.textContent = `The number ${elFirstOperandInput.value} cannot be divided by 0`;
+      break;
+
+    default:
+      elErrorMessage.textContent = '';
+  }
+
+  elErrorBox.appendChild(elErrorMessage);
+}
 
 function calculationOfValues(evt) {
   evt.preventDefault();
 
-  elErrorMessage.textContent = '';
+  elErrorBox.innerHTML = '';
 
   // ikkala inputga qiymat kiritilmay qolish holati tekshirildi
   if (elFirstOperandInput.value === '' || elSecondOperandInput.value === '') {
-    elErrorMessage.textContent = "enter a number in the fields to perform the calculation";
-    elSiteMain.appendChild(elErrorMessage);
+    generatingError('operandsAreNotIncluded');
     return;
   }
 
   // mahraj 0 bo'lib qolish holat bo'lmasligi uchun tekshiruv qo'yildi
   if (elSecondOperandInput.value === '0' && elOperatorSelector.value === 'division') {
-    elErrorMessage.textContent = `The number ${elFirstOperandInput.value} cannot be divided by 0`;
-    elSiteMain.appendChild(elErrorMessage);
+    generatingError('divideByZero');
     return;
   }
 

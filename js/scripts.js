@@ -14,7 +14,11 @@
 // 4. ikkita input bo'sh bo'lishiga tekshirish (bajarildi)
 // 5. stilni yaxshilash (bajarildi)
 
+
+// HAVE TO
 // ikkinchi argument 0 bo'lganda xatolik qaytarilishi kerak. (bajarildi);
+
+// asosiy topshiriqni kodlarini bitta qisimga, o'zimdan qo'shgan elementlarni kodlarini boshqa qisimga ajratish kerak
 
 function Calculation (firstOperand, secondOperand) {
   this.firstOperand = firstOperand;
@@ -44,7 +48,7 @@ function generatingError(errorType) {
 
   switch(errorType) {
     case 'operandsAreNotIncluded':
-      elErrorMessage.textContent = "enter a number in the fields to perform the calculation";
+      elErrorMessage.textContent = 'enter a number in the fields to perform the calculation';
       break;
 
     case 'divideByZero':
@@ -63,20 +67,24 @@ function calculationOfValues(evt) {
 
   elErrorBox.innerHTML = '';
 
-  const firstOperandInput = elFirstOperandInput.value.trim() || localStorage.getItem('firstOperandInput');
-  console.log(firstOperandInput);
-  const secondOperandInput = elSecondOperandInput.value.trim() || localStorage.getItem('secondOperandInput');
-  console.log(secondOperandInput);
+  // ikkita inputga ham ma'lumot kiritilmaslik, yoki ma'lumotlar local storageda bo'lsayu uni inputlardan ongli ravishda o'chirib ishlatish holati uchun foydalanuvchiga habar yuborish sharti
+  if(elFirstOperandInput.value.trim() === '' && elSecondOperandInput.value.trim() === '') {
+    generatingError('operandsAreNotIncluded');
+    elCalculationResult.innerHTML = '<span class="text-muted">Result</span>';
+    return;
+  }
 
+  const firstOperandInput = elFirstOperandInput.value.trim() || localStorage.getItem('firstOperandInput');
+  const secondOperandInput = elSecondOperandInput.value.trim() || localStorage.getItem('secondOperandInput');
 
   // ikkala inputga qiymat kiritilmay qolish holati tekshirildi
-  if (firstOperandInput.value === '' || secondOperandInput.value === '') {
+  if (firstOperandInput === '' || secondOperandInput === '' || firstOperandInput == null || secondOperandInput == null) {
     generatingError('operandsAreNotIncluded');
     return;
   }
 
   // mahraj 0 bo'lib qolish holat bo'lmasligi uchun tekshiruv qo'yildi
-  if (secondOperandInput.value === '0' && elOperatorSelector.value === 'division') {
+  if (secondOperandInput === '0' && elOperatorSelector.value === 'division') {
     generatingError('divideByZero');
     return;
   }
@@ -91,7 +99,7 @@ function calculationOfValues(evt) {
   const calculator = new Calculation(Number(firstOperandInput), Number(secondOperandInput));
 
   switch(operatorSelector) {
-    case "division":
+    case 'division':
       calculationResult = calculator.division();
       operatorType = '/';
       break;
@@ -116,7 +124,7 @@ function calculationOfValues(evt) {
       operatorType = '**';
       break;
     default:
-      elErrorMessage.textContent = "non-existent operator selected, please select an existing operator in the list";
+      elErrorMessage.textContent = 'non-existent operator selected, please select an existing operator in the list';
       return;
   }
 
@@ -125,5 +133,14 @@ function calculationOfValues(evt) {
   elSecondOperandInput.value = localStorage.getItem('secondOperandInput');
   elFirstOperandInput.focus();
 }
+
+// foydalanuvchi sahifadan chiqib yana qaytib kirsa ham uning ishlagan hisob kitoblari turgan bo'lishi uchun yozilgan script
+// if(
+//     localStorage.getItem('firstOperandInput') != null
+//     &&
+//     localStorage.getItem('secondOperandInput') != null
+//   ) {
+//   calculationOfValues(Number(localStorage.getItem('firstOperandInput')), Number(localStorage.getItem('secondOperandInput')));
+// }
 
 elCalculatorForm.addEventListener('submit', calculationOfValues);

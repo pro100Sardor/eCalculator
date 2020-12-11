@@ -18,13 +18,13 @@
 
   <main class="container mt-5" id="siteMain">
     <section class="calculator-box row">
-      <div class="col-9 d-flex align-items-">
+      <div class="col-lg-9 col-12 mb-lg-0 mb-3 d-flex align-items-">
         <form class="flex-grow-1" id="calculatorForm" action="https://echo.htmlacademy.ru" method="GET" spellcheck="false">
           <div class="row">
-            <div class="col-4 flex-grow-1 d-flex">
+            <div class="col-12 col-sm-4 mb-3 mb-sm-0 flex-grow-1 d-flex">
               <input class="flex-grow-1 form-control" id="firstOperandInput" type="number" name="firstOperand" step="any">
             </div>
-            <div class="col-2 d-flex">
+            <div class="col-12 col-sm-2 mb-3 mb-sm-0 d-flex">
               <select class="flex-grow-1 custom-select" id="operatorSelector" name="operatorSelector">
                 <option value="division"> / </option>
                 <option value="multiplication"> * </option>
@@ -34,16 +34,16 @@
                 <option value="exponentiation"> ** </option>
               </select>
             </div>
-            <div class="col-4 flex-grow-1 d-flex">
+            <div class="col-12 col-sm-4 flex-grow-1 d-flex mb-3 mb-sm-0">
               <input class="flex-grow-1 form-control" id="secondOperandInput" type="number" name="secondOperand" step="any">
             </div>
-            <div class="col-2 d-flex">
+            <div class="col-12 col-sm-2 d-flex">
               <button class="flex-grow-1 btn btn-success" type="submit" value="submit" name="submit"> = </button>
             </div>
           </div>
         </form>
       </div>
-      <div class="col-3">
+      <div class="col-12 col-lg-3">
         <p class="calculator-box__calculation-result d-flex justify-content-center rounded mb-0" id="calculationResult"><span class="text-muted">Result</span></p>
       </div>
     </section>

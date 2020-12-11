@@ -11,10 +11,10 @@
 // 1. inputlarga kiritiladigan qiymatlarni natijaga qo'shib chiqarish (bajarildi)
 // 2. inputlarni valuesini tozalab tashlash va focusni birinchi inputga qo'yilish (bajarildi)
 // // 3. inputni qiymatini local storagega joylash va local storagedan olish
-// 4. ikkita input bo'sh bo'lishiga tekshirish
-// 5. stilni yaxshilash
+// 4. ikkita input bo'sh bo'lishiga tekshirish (bajarildi)
+// 5. stilni yaxshilash (bajarildi)
 
-// ikkinchi argument 0 bo'lganda xatolik qaytarilishi kerak.
+// ikkinchi argument 0 bo'lganda xatolik qaytarilishi kerak. (bajarildi);
 
 function Calculation (firstOperand, secondOperand) {
   this.firstOperand = firstOperand;
@@ -63,54 +63,32 @@ function calculationOfValues(evt) {
 
   elErrorBox.innerHTML = '';
 
+  const firstOperandInput = elFirstOperandInput.value.trim() || localStorage.getItem('firstOperandInput');
+  console.log(firstOperandInput);
+  const secondOperandInput = elSecondOperandInput.value.trim() || localStorage.getItem('secondOperandInput');
+  console.log(secondOperandInput);
+
+
   // ikkala inputga qiymat kiritilmay qolish holati tekshirildi
-  if (elFirstOperandInput.value === '' || elSecondOperandInput.value === '') {
+  if (firstOperandInput.value === '' || secondOperandInput.value === '') {
     generatingError('operandsAreNotIncluded');
     return;
   }
 
   // mahraj 0 bo'lib qolish holat bo'lmasligi uchun tekshiruv qo'yildi
-  if (elSecondOperandInput.value === '0' && elOperatorSelector.value === 'division') {
+  if (secondOperandInput.value === '0' && elOperatorSelector.value === 'division') {
     generatingError('divideByZero');
     return;
   }
 
-  // birinchi marta kirganda setX yoki setY holatini qo'llash hato bo'ladi shuning foydalanuvch uchun birinchi marta kirganda ikkita operand berilishi shart. Shu holatni tekshirvchi o'zgaruvchi e'lon qilindi
-
-  // let isFirstTimeOneOperand =
-  //   (
-  //     (
-  //       (elFirstOperandInput.value !== '' && localStorage.getItem('firstOperandInput') === '')
-  //       ||
-  //       (elFirstOperandInput.value === '' && localStorage.getItem('firstOperandInput') === '')
-  //     )
-  //     &&
-  //     (
-  //       (elSecondOperandInput.value !== '' && localStorage.getItem('secondOperandInput') === '')
-  //       ||
-  //       (elSecondOperandInput.value === '' && localStorage.getItem('secondOperandInput') === '')
-  //     )
-  //   );
-
-  // if (isFirstTimeOneOperand) {
-  //   elErrorMessage.textContent = 'You must give two operands the first time you use the calculator';
-  //   return;
-  // }
-
-  // const firstOperandInput = localStorage.getItem('firstOperandInput') || Number(elFirstOperandInput.value.trim());
-  // const secondOperandInput = localStorage.getItem('secondOperandInput') || Number(elSecondOperandInput.value.trim());
-
-  const firstOperandInput = Number(elFirstOperandInput.value.trim());
-  const secondOperandInput = Number(elSecondOperandInput.value.trim());
-
-  localStorage.setItem('firstOperandInput', String(firstOperandInput));
-  localStorage.setItem('secondOperandInput', String(secondOperandInput));
+  localStorage.setItem('firstOperandInput', firstOperandInput);
+  localStorage.setItem('secondOperandInput', secondOperandInput);
 
   const operatorSelector = elOperatorSelector.value;
   let calculationResult = 0;
   let operatorType = '';
 
-  const calculator = new Calculation(firstOperandInput, secondOperandInput);
+  const calculator = new Calculation(Number(firstOperandInput), Number(secondOperandInput));
 
   switch(operatorSelector) {
     case "division":
@@ -143,9 +121,9 @@ function calculationOfValues(evt) {
   }
 
   elCalculationResult.innerHTML = `<span>${firstOperandInput} ${operatorType} ${secondOperandInput} =</span> <span class="display-4 pr-3">${calculationResult.toFixed(2)}</span>`;
-  // elFirstOperandInput.value = '';
-  // elFirstOperandInput.focus();
-  // elSecondOperandInput.value = '';
+  elFirstOperandInput.value = localStorage.getItem('firstOperandInput');
+  elSecondOperandInput.value = localStorage.getItem('secondOperandInput');
+  elFirstOperandInput.focus();
 }
 
 elCalculatorForm.addEventListener('submit', calculationOfValues);

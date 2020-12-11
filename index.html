@@ -11,26 +11,42 @@
   <link rel="stylesheet" href="./css/main.min.css">
   <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
 </head>
-<body class="page__body page__body--nojs" id="siteBody">
+<body class="page__body page__body--nojs bg-white" id="siteBody">
   <script src="./js/nojs.min.js"></script>
 
   <!-- MAIN part of page started -->
 
-  <main class="page__main">
-    <form id="calculatorForm" action="https://echo.htmlacademy.ru" method="GET" spellcheck="false">
-      <input id="" type="number" name="firstOperand" id="firstOperand">
-      <select name="operatorSelector" id="operatorSelector">
-        <option value="division"> / </option>
-        <option value="product"> * </option>
-        <option value="difference"> - </option>
-        <option value="addition"> + </option>
-        <option value="module"> % </option>
-        <option value="power"> ** </option>
-      </select>
-      <input type="number" name="secondOperand" id="secondOperand">
-      <button type="submit" value="submit" name="submit"> = </button>
-    </form>
-    <span class="border p-2 m-2">adfa</span>
+  <main class="container mt-5" id="siteMain">
+    <section class="calculator-box row">
+      <div class="col-9 d-flex align-items-">
+        <form class="flex-grow-1" id="calculatorForm" action="https://echo.htmlacademy.ru" method="GET" spellcheck="false">
+          <div class="row">
+            <div class="col-4 flex-grow-1 d-flex">
+              <input class="flex-grow-1 form-control" id="firstOperandInput" type="number" name="firstOperand" step="any">
+            </div>
+            <div class="col-2 d-flex">
+              <select class="flex-grow-1 custom-select" id="operatorSelector" name="operatorSelector">
+                <option value="division"> / </option>
+                <option value="multiplication"> * </option>
+                <option value="subtraction"> - </option>
+                <option value="addition"> + </option>
+                <option value="modulus"> % </option>
+                <option value="exponentiation"> ** </option>
+              </select>
+            </div>
+            <div class="col-4 flex-grow-1 d-flex">
+              <input class="flex-grow-1 form-control" id="secondOperandInput" type="number" name="secondOperand" step="any">
+            </div>
+            <div class="col-2 d-flex">
+              <button class="flex-grow-1 btn btn-success" type="submit" value="submit" name="submit"> = </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-3">
+        <p class="calculator-box__calculation-result d-flex justify-content-center rounded mb-0" id="calculationResult"><span class="text-muted">Result</span></p>
+      </div>
+    </section>
   </main>
 
   <!-- MAIN part of page ended -->
@@ -41,7 +57,6 @@
 
   <script src="./js/jquery-3.5.1.min.js"></script>
   <script src="./js/bootstrap.bundle.min.js"></script>
-  <script src="./js/utils.js"></script>
   <script src="./js/scripts.js"></script>
 </body>
 </html>

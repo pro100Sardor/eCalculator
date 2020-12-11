@@ -1,25 +1,3 @@
-// I bosqich: kalkulyatorni shunchaki son kiritganda ishlaydigan qilish
-// 1. hisoblash amalini bajaruvchi obyektni hosil qilib olish (bajarildi)
-// 1. Formni jonatilishni to'xtatish (bajarildi)
-// 2. birinchi inputdagi qiymatni olish (bajarildi)
-// 3. ikkinchi inputdagi qiymatni olish (bajarildi)
-// 4. selectni qiymatini olish (bajarildi)
-// 5. obyektdan foydalanib hisob kitob amalini bajarish (bajarildi)
-// 6. natijani viewga chiqarish (bajarildi)
-
-// II - bosqich
-// 1. inputlarga kiritiladigan qiymatlarni natijaga qo'shib chiqarish (bajarildi)
-// 2. inputlarni valuesini tozalab tashlash va focusni birinchi inputga qo'yilish (bajarildi)
-// // 3. inputni qiymatini local storagega joylash va local storagedan olish
-// 4. ikkita input bo'sh bo'lishiga tekshirish (bajarildi)
-// 5. stilni yaxshilash (bajarildi)
-
-
-// HAVE TO
-// ikkinchi argument 0 bo'lganda xatolik qaytarilishi kerak. (bajarildi);
-
-// asosiy topshiriqni kodlarini bitta qisimga, o'zimdan qo'shgan elementlarni kodlarini boshqa qisimga ajratish kerak
-
 function Calculation (firstOperand, secondOperand) {
   this.firstOperand = firstOperand;
   this.secondOperand = secondOperand;
@@ -33,6 +11,7 @@ Calculation.prototype.modulus = function() {return this.firstOperand % this.seco
 Calculation.prototype.exponentiation = function() {return this.firstOperand ** this.secondOperand;}
 
 let elSiteMain = document.querySelector('#siteMain');
+
 let elCalculatorForm = elSiteMain.querySelector('#calculatorForm');
 let elFirstOperandInput = elCalculatorForm.querySelector('#firstOperandInput');
 let elSecondOperandInput = elCalculatorForm.querySelector('#secondOperandInput');
@@ -41,6 +20,16 @@ let elOperatorSelector = elCalculatorForm.querySelector('#operatorSelector');
 let elErrorBox = document.querySelector('#errorBox');
 
 let elCalculationResult = elSiteMain.querySelector('#calculationResult');
+
+// foydalanuvchi sahifadan chiqib yana qaytib kirsa ham uning oxirgi ishlagan hisob kitobi turgan bo'lishi uchun yozilgan script
+if(
+  localStorage.getItem('firstOperandInput') != null
+  &&
+  localStorage.getItem('secondOperandInput') != null
+) {
+  elFirstOperandInput.value = localStorage.getItem('firstOperandInput');
+  elSecondOperandInput.value = localStorage.getItem('secondOperandInput');
+}
 
 function generatingError(errorType) {
   let elErrorMessage = document.createElement('p');
@@ -103,44 +92,47 @@ function calculationOfValues(evt) {
       calculationResult = calculator.division();
       operatorType = '/';
       break;
+
     case 'multiplication':
       calculationResult = calculator.multiplication();
       operatorType = '*';
       break;
+
     case 'subtraction':
       calculationResult = calculator.subtraction();
       operatorType = '-';
       break;
+
     case 'addition':
       calculationResult = calculator.addition();
       operatorType = '+';
       break;
+
     case 'modulus':
       calculationResult = calculator.modulus();
       operatorType = '%';
       break;
+
     case 'exponentiation':
       calculationResult = calculator.exponentiation();
       operatorType = '**';
       break;
+
     default:
       elErrorMessage.textContent = 'non-existent operator selected, please select an existing operator in the list';
       return;
   }
 
-  elCalculationResult.innerHTML = `<span>${firstOperandInput} ${operatorType} ${secondOperandInput} =</span> <span class="display-4 pr-3">${calculationResult.toFixed(2)}</span>`;
+  elCalculationResult.innerHTML =
+  `
+    <span>${firstOperandInput} ${operatorType} ${secondOperandInput} =</span>
+    <span class="display-4 pr-3">${calculationResult.toFixed(2)}</span>
+  `;
+
   elFirstOperandInput.value = localStorage.getItem('firstOperandInput');
   elSecondOperandInput.value = localStorage.getItem('secondOperandInput');
+
   elFirstOperandInput.focus();
 }
-
-// foydalanuvchi sahifadan chiqib yana qaytib kirsa ham uning ishlagan hisob kitoblari turgan bo'lishi uchun yozilgan script
-// if(
-//     localStorage.getItem('firstOperandInput') != null
-//     &&
-//     localStorage.getItem('secondOperandInput') != null
-//   ) {
-//   calculationOfValues(Number(localStorage.getItem('firstOperandInput')), Number(localStorage.getItem('secondOperandInput')));
-// }
 
 elCalculatorForm.addEventListener('submit', calculationOfValues);

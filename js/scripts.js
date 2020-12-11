@@ -142,7 +142,7 @@ function calculationOfValues(evt) {
       return;
   }
 
-  elCalculationResult.innerHTML = `${firstOperandInput} ${operatorType} ${secondOperandInput} = ${calculationResult.toFixed(2)}`;
+  elCalculationResult.innerHTML = `<span>${firstOperandInput} ${operatorType} ${secondOperandInput} =</span> <span class="display-4 pr-3">${calculationResult.toFixed(2)}</span>`;
   // elFirstOperandInput.value = '';
   // elFirstOperandInput.focus();
   // elSecondOperandInput.value = '';
